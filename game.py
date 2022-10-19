@@ -22,22 +22,11 @@ guesses		= 0						# Keep track of how many questions are asked
 minimum = len( min(words, key = len) )
 maximum = len( max(words, key = len) )
 
-#
-# Check if user input is boolean
-#
-# @param	string	question	Question that will be printed to the user
-# @return	boolean
-#
+
 def check(question):
 	response = input('%s [Yes/no] ' % question)
 	return response.lower() in ['y', 'yes', '1', 'true']
 
-#
-# Check if user input is an integer
-#
-# @param	string			question	Question that will be printed to the user
-# @return	integer|boolean				False if not an integer
-#
 def integer(question):
 	try:
 		return int( input('%s ' % question) )
@@ -45,24 +34,11 @@ def integer(question):
 		print('Please enter a valid number.')
 		return False
 
-#
-# Debug helper, only prints string if debug argument is passed
-#
-# @param	mixed	to_print
-# @return	void
-#
 def debug(to_print):
 	if args.debug:
 		print(to_print)
 
-#
-# Spoof loading interface
-#
-# @param 	int		length	The number of times to repeat symbol
-# @param	float	timeout	Timeout between each print
-# @param	string	symbol	Symbol to print to screen
-# @return	void
-#
+
 def loading(length = 3, timeout = 0.1, symbol = '.'):
 	if not args.debug:
 		string = ''
@@ -71,12 +47,7 @@ def loading(length = 3, timeout = 0.1, symbol = '.'):
 			time.sleep(timeout)
 			print(string)
 
-#
-# Filter words that have characters matching correct guesses
-# and characters that do not match wrong guesses
-#
-# @return	list	A filtered list of global variable `words`
-#
+
 def filter_words():
 
 	filtered = []
@@ -102,11 +73,6 @@ def filter_words():
 
 	return filtered
 
-#
-# Order alphabet by most frequent character in `words` list
-#
-# @return	void
-#
 def order_alphabet():
 	global alphabet
 
@@ -127,11 +93,6 @@ def order_alphabet():
 	alphabet = ordered
 
 
-#
-# Filter alphabet of characters that don't appear in the words list
-#
-# @return	void
-#
 def filter_alphabet():
 	global alphabet
 	global wrong
@@ -151,12 +112,7 @@ def filter_alphabet():
 
 	order_alphabet()
 
-#
-# Ask the user for their word length and confirm, repeat if wrong
-#
-# @param	boolean		confirm		Run confirmation check if True
-# @return	integer
-#
+
 def ask_for_length(confirm = True):
 	word_length = False
 
@@ -184,9 +140,7 @@ def ask_for_length(confirm = True):
 # Print debug helpers
 debug('--- Playing in debug mode ---')
 
-#
-# Start game with a nice introducition
-#
+
 print('''
 I will be attempting to guess a word you are thinking of!
 All you have todo is think of a word with a length between %d and %d
@@ -197,9 +151,7 @@ For example: %s (length: %d)
 # Get users word length
 word_length = ask_for_length()
 
-#
-# Lets get guessing
-#
+
 print('Great! Lets get started.')
 loading()
 
